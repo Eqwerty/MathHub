@@ -23,8 +23,8 @@ on:
     inputs:
       inputName:
         type: string
-        required: true
-        default: nullName
+        required: false
+        default: "nullName"
 
 jobs:
   build:
@@ -57,4 +57,4 @@ jobs:
       run: dotnet test --no-build --configuration Release
 
     - name: Print
-      run: echo Input variable value => ${{ inputs.inputName }}
+      run: echo ${{ inputs.inputName }}
