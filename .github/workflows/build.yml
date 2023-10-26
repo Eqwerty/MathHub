@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
     paths-ignore:
       - '.scripts/**'
+      - '.github/CODEOWNERS'
       - .gitignore
       - CODE_OF_CONDUCT.md
       - LICENSE
@@ -13,6 +14,7 @@ on:
     branches: [ "master" ]
     paths-ignore:
       - '.scripts/**'
+      - '.github/CODEOWNERS'
       - .gitignore
       - CODE_OF_CONDUCT.md
       - LICENSE
