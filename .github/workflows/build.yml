@@ -9,11 +9,6 @@ on:
       - .gitignore
       - README.md
   workflow_call:
-    inputs:
-      inputName:
-        type: string
-        required: false
-        default: "default name"
 
 jobs:
   build:
@@ -44,6 +39,3 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build --configuration Release
-
-    - name: Print
-      run: echo ${{ inputs.inputName }}
