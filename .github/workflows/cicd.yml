@@ -8,9 +8,9 @@ on:
       - .gitignore
       - README.md
 
-permissions:
-  id-token: write
-  contents: read
+#permissions:
+#  id-token: write
+#  contents: read
 
 jobs:
 
