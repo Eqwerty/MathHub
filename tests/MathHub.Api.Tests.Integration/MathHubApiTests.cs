@@ -13,6 +13,7 @@ public class MathHubApiTests
     [InlineData("/isEven/4", true)]
     [InlineData("/isEven/7", false)]
     [InlineData("/isEven/0", true)]
+    [InlineData("/isEven/1", true)]
     public async Task IsEvenEndpoint_ShouldReturnExpectedResult_WhenValidNumberIsProvided(string route, bool expectedResult)
     {
         //Arrange
