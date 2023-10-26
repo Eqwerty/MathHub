@@ -1,30 +1,19 @@
 name: Build
 
 on:
-  push:
-    branches: [ "master" ]
-    paths-ignore:
-      - '.scripts/**'
-      - '.github/CODEOWNERS'
-      - .gitignore
-      - CODE_OF_CONDUCT.md
-      - LICENSE
-      - README.md
   pull_request:
     branches: [ "master" ]
     paths-ignore:
       - '.scripts/**'
       - '.github/CODEOWNERS'
       - .gitignore
-      - CODE_OF_CONDUCT.md
-      - LICENSE
       - README.md
   workflow_call:
     inputs:
       inputName:
         type: string
         required: false
-        default: "nullName"
+        default: "default name"
 
 jobs:
   build:
