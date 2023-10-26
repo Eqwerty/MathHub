@@ -6,4 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="MathHub.Api.Tests.Unit"/>
+    </ItemGroup>
+
 </Project>

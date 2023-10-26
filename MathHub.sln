@@ -4,6 +4,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4491F7D8-413
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathHub.Api", "src\MathHub.Api\MathHub.Api.csproj", "{8EE70702-1149-4CFC-8B77-F83DD494EAB3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{11B508E8-48D3-4336-B1CF-C934629C2BB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathHub.Api.Tests.Unit", "tests\MathHub.Api.Tests.Unit\MathHub.Api.Tests.Unit.csproj", "{426D8B17-9C87-4D93-BEBC-A10EC470FAA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathHub.Api.Tests.Integration", "tests\MathHub.Api.Tests.Integration\MathHub.Api.Tests.Integration.csproj", "{D7676A98-36AD-46EF-9D0A-7FA0D814270A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +17,21 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8EE70702-1149-4CFC-8B77-F83DD494EAB3} = {4491F7D8-4136-45E9-B462-F330CE3BBB5A}
+		{426D8B17-9C87-4D93-BEBC-A10EC470FAA5} = {11B508E8-48D3-4336-B1CF-C934629C2BB6}
+		{D7676A98-36AD-46EF-9D0A-7FA0D814270A} = {11B508E8-48D3-4336-B1CF-C934629C2BB6}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8EE70702-1149-4CFC-8B77-F83DD494EAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EE70702-1149-4CFC-8B77-F83DD494EAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EE70702-1149-4CFC-8B77-F83DD494EAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EE70702-1149-4CFC-8B77-F83DD494EAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426D8B17-9C87-4D93-BEBC-A10EC470FAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426D8B17-9C87-4D93-BEBC-A10EC470FAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426D8B17-9C87-4D93-BEBC-A10EC470FAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426D8B17-9C87-4D93-BEBC-A10EC470FAA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7676A98-36AD-46EF-9D0A-7FA0D814270A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7676A98-36AD-46EF-9D0A-7FA0D814270A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7676A98-36AD-46EF-9D0A-7FA0D814270A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7676A98-36AD-46EF-9D0A-7FA0D814270A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
