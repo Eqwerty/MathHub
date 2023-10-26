@@ -19,6 +19,12 @@ on:
       - CODE_OF_CONDUCT.md
       - LICENSE
       - README.md
+  workflow_call:
+    inputs:
+      inputName:
+        type: string
+        required: true
+        default: nullName
 
 jobs:
   build:
@@ -49,3 +55,6 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build --configuration Release
+
+    - name: Print
+      run: echo Input variable value => ${{ inputs.inputName }}
