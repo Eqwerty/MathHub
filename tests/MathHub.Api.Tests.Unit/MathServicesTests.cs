@@ -42,6 +42,7 @@ public class MathServicesTests
     [InlineData(101)]
     [InlineData(1001)]
     [InlineData(50001)]
+    [InlineData(5000)]
     public void IsEven_ShouldReturnFalse_WhenOddNumberIsProvided(int number)
     {
         // Act
