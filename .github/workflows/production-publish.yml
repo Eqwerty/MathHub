@@ -14,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -24,6 +25,9 @@ jobs:
 
       - name: Build
         run: dotnet build ./MathHub.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test ./MathHub.sln --no-build --configuration Release
 
       - name: Publish
         run: dotnet publish ./src/MathHub.Api/MathHub.Api.csproj --configuration Release --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
