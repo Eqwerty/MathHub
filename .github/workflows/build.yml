@@ -1,11 +1,6 @@
 ﻿name: Build
 
 on:
-  push:
-    paths-ignore:
-      - '.github/CODEOWNERS'
-      - .gitignore
-      - README.md
   workflow_call:
     
 jobs: 

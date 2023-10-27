@@ -19,7 +19,7 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    extends: ./.github/workflows/build.yml#jobs.build
+    uses: ./.github/workflows/build.yml#jobs.build
 
     steps:
       - name: Publish
