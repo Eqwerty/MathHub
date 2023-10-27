@@ -41,18 +41,13 @@ jobs:
 
       - name: Build
         run: dotnet build ./MathHub.sln --configuration Release --no-restore
-  
-  test:
-    runs-on: ubuntu-latest
-    needs: [ build ]
-
-    steps:
+        
       - name: Test
         run: dotnet test ./MathHub.sln --no-build --configuration Release
   
-  publish:
+  deploy:
     runs-on: ubuntu-latest
-    needs: [ test ]
+    needs: [ build ]
 
     steps:
     - name: Publish
