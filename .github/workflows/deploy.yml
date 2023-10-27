@@ -13,9 +13,11 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Log Directory
-      run: 
-        echo $PWD
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
       
     - name: Publish
       run: dotnet publish ./src/MathHub.Api/MathHub.Api.csproj --no-restore --configuration Release --output ./publish
