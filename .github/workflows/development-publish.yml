@@ -17,7 +17,9 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
 
 jobs:
-  uses: ./.github/workflows/build.yml
+  
+  build:
+    uses: ./.github/workflows/build.yml
   
   publish:
     runs-on: ubuntu-latest
