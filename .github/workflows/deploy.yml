@@ -24,6 +24,13 @@ jobs:
       
     - name: Publish
       run: dotnet publish ./src/MathHub.Api/MathHub.Api.csproj --no-restore --configuration Release --output ./publish
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ vars.AZURE_CLIENT_ID }}
+        tenant-id: ${{ vars.AZURE_TENANT_ID }}
+        subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
         
     - name: Deploy AppService
       uses: azure/webapps-deploy@v2
