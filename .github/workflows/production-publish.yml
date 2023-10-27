@@ -12,8 +12,6 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    
-    needs: [ Development ]
 
     steps:
       - uses: actions/checkout@v3
