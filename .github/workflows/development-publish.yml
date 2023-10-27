@@ -21,6 +21,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Directory
+        run:
+          echo $PWD
+        
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -50,6 +54,10 @@ jobs:
     needs: [ build ]
 
     steps:
+    - name: Directory
+      run:
+        echo $PWD
+        
     - name: Publish
       run: dotnet publish ./src/MathHub.Api/MathHub.Api.csproj --configuration Release --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
 
