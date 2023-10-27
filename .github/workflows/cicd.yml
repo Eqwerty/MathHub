@@ -18,9 +18,6 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
 
-#  deploy-development:
-#    uses: ./.github/workflows/deploy.yml
-#    secrets: inherit
-#    needs: [ build ]
-#    with:
-#      environmentName: Development
+  deploy-development:
+    uses: ./.github/workflows/deploy.yml
+    needs: [ build ]

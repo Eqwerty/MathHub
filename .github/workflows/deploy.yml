@@ -1,0 +1,21 @@
+﻿name: Deploy
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  
+  deploy:
+
+    runs-on: ubuntu-latest
+      
+    steps:
+    - name: Publish
+      run: dotnet publish --no-restore --configuration Release --output ./publish
+        
+    - name: Deploy AppService
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
+        package: ./publish
