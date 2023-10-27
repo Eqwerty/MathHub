@@ -17,27 +17,50 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
 
       - name: Restore
         run: dotnet restore ./MathHub.sln
 
       - name: Build
         run: dotnet build ./MathHub.sln --configuration Release --no-restore
+  
+  test:
+    runs-on: ubuntu-latest
+    needs: [ build ]
 
-      - name: Publish
-        run: dotnet publish ./src/MathHub.Api/MathHub.Api.csproj --configuration Release --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+    steps:
+      - name: Test
+        run: dotnet test --no-build --configuration Release
+  
+  publish:
+    runs-on: ubuntu-latest
+    needs: [ test ]
 
-      - name: Deployment
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
-          package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+    steps:
+    - name: Publish
+      run: dotnet publish ./src/MathHub.Api/MathHub.Api.csproj --configuration Release --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+
+    - name: Deployment
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
+        package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
