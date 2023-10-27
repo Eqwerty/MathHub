@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: Test
-        run: dotnet test ./MathHub.sln --no-build --configuration Release
+        run: dotnet test ./src/MathHub.Api/MathHub.Api.csproj --no-build --configuration Release
   
   publish:
     runs-on: ubuntu-latest
