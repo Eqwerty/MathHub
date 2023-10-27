@@ -12,10 +12,7 @@ var app = builder.Build();
 
 app.MapGet("/isEven/{number:int}", ([FromRoute] int number, [FromServices] IMathService mathService) => Results.Ok(mathService.IsEven(number)));
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
