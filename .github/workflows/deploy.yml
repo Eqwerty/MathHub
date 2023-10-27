@@ -11,7 +11,7 @@ jobs:
       
     steps:
     - name: Publish
-      run: dotnet publish --no-restore --configuration Release --output ./publish
+      run: dotnet publish ./MathHub.sln --no-restore --configuration Release --output ./publish
         
     - name: Deploy AppService
       uses: azure/webapps-deploy@v2
