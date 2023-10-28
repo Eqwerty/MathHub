@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - master
+      - feature/*
     paths-ignore:
       - '.github/CODEOWNERS'
       - .gitignore
