@@ -50,7 +50,7 @@ jobs:
             dotnet publish --configuration Release --self-contained --output ./publish
             cd publish
             zip -r ./publish.zip .
-        working-directory: ./src/Web/
+        working-directory: ./src/MathHub.Api/
         
       - name: Upload website artifact (website)
         if: ${{ inputs.build-artifacts == true }}
