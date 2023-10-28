@@ -15,11 +15,3 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       build-artifacts: true
-  
-  prepare:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Display message
-        run:
-          echo Hello from feature
