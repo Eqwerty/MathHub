@@ -6,9 +6,6 @@ on:
       - '.github/CODEOWNERS'
       - .gitignore
       - README.md
-  branch_protection_rule:
-    types:
-      - created
 
 jobs:
   build:
