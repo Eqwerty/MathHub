@@ -1,0 +1,29 @@
+name: Development Deploy
+
+on:
+  workflow_call:
+
+env:
+  AZURE_WEBAPP_NAME: mathhub-master
+
+jobs:
+  
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      build-artifacts: true
+  
+  deploy-development:
+    runs-on: ubuntu-latest
+    needs: [ build ]
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
+          package: website/publish.zip
