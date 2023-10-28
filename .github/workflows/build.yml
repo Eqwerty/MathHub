@@ -1,14 +1,6 @@
 ﻿name: Build
 
 on:
-  push:
-    branches-ignore:
-      - master
-    paths-ignore:
-      - '.github/CODEOWNERS'
-      - .gitignore
-      - README.md
-  
   workflow_call:
     inputs:
       build-artifacts:
