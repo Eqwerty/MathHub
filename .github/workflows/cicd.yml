@@ -8,7 +8,7 @@ on:
       - README.md
 
 env:
-    DEPLOY_APP: ${{ startsWith( github.ref_name, "feature/" ) || github.ref_name == "master" }}
+    DEPLOY_APP: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
 
 jobs:
   
@@ -21,12 +21,14 @@ jobs:
           echo ${{ env.DEPLOY_APP }}
   
   build:
+    needs: [ prepare ]
     uses: ./.github/workflows/build.yml
     with:
       build-artifacts: ${{ env.DEPLOY_APP }}
     
   deploy:
-    if: ${{ env.DEPLOY_APP }}
+    needs: [ build ]
+    if: ${{ env.DEPLOY_APP == true }}
     runs-on: ubuntu-latest
     
     steps:
