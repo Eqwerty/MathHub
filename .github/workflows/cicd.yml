@@ -27,10 +27,8 @@ jobs:
       build-artifacts: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
     
   deploy:
-    env:
-      DEPLOY_APP: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
     needs: [ build ]
-    if: ${{ env.DEPLOY_APP == true }}
+    if: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
     runs-on: ubuntu-latest
     
     steps:
