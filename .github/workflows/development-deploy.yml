@@ -13,7 +13,7 @@ jobs:
     with:
       build-artifacts: true
   
-  deploy-development:
+  deploy:
     runs-on: ubuntu-latest
     needs: [ build ]
 
