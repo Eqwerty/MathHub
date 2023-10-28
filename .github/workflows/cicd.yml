@@ -6,18 +6,31 @@ on:
       - '.github/CODEOWNERS'
       - .gitignore
       - README.md
-    
+
+env:
+    DEPLOY_APP: ${{ startsWith( github.ref_name, feature/ ) || github.ref_name == master }}
+
 jobs:
   
   prepare:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Display branch name
+      - name: Display DEPLOY_APP
         run:
-          echo ${{ github.ref_name }}
+          echo ${{ env.DEPLOY_APP }}
   
   build:
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: false
+      build-artifacts: ${{ env.DEPLOY_APP }}
+    
+  deploy:
+    if: ${{ env.DEPLOY_APP }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Display env.DEPLOY_APP
+        run:
+          echo Deploying...
+    
