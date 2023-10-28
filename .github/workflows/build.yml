@@ -57,5 +57,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: website
-          path: ./src/Web/publish/publish.zip
+          path: ./src/MathHub.Api/publish/publish.zip
           if-no-files-found: error
