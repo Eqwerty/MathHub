@@ -1,7 +1,13 @@
 name: Development Deploy
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - .gitignore
+      - README.md
 
 env:
   AZURE_WEBAPP_NAME: mathhub-master
