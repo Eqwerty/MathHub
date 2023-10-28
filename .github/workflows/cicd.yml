@@ -9,17 +9,6 @@ on:
 
 
 jobs:
-  
-  prepare:
-    runs-on: ubuntu-latest
-    env:
-      DEPLOY_APP: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
-    
-    steps:
-      - name: Display DEPLOY_APP
-        run:
-          echo ${{ env.DEPLOY_APP }}
-  
   build:
     needs: [ prepare ]
     uses: ./.github/workflows/build.yml
@@ -28,11 +17,6 @@ jobs:
     
   deploy:
     needs: [ build ]
-    if: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Display env.DEPLOY_APP
-        run:
-          echo Deploying...
+    if: ${{ github.ref_name == 'master' }}
+    uses: ./.github/workflows/deploy.yml
     
