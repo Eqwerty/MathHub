@@ -50,4 +50,10 @@ public class MathServicesTests
         // Assert
         isEven.Should().BeFalse();
     }
+
+    [Fact]
+    public void FailingTest()
+    {
+        true.Should().BeFalse();
+    }
 }
