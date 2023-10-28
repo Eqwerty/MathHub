@@ -35,7 +35,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
 
-      - name: Display dotnet version
+      - name: Display .NET version
         run: dotnet --version
 
       - name: Restore solution
@@ -47,7 +47,7 @@ jobs:
       - name: Test solution
         run: dotnet test --no-build --configuration Release
 
-      - name: Publish website
+      - name: Publish solution
         if: ${{ inputs.build-artifacts == true }}
         run: |
           dotnet publish --configuration Release --output ./publish
