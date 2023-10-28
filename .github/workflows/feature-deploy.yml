@@ -1,4 +1,4 @@
-﻿name: Deploy
+﻿name: Feature Deploy
 
 on:
   push:
