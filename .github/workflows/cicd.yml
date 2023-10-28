@@ -24,7 +24,7 @@ jobs:
     needs: [ prepare ]
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: ${{ env.DEPLOY_APP }}
+      build-artifacts: ${{ env.DEPLOY_APP == true }}
     
   deploy:
     needs: [ build ]
