@@ -7,13 +7,13 @@ on:
       - .gitignore
       - README.md
 
-env:
-    DEPLOY_APP: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
 
 jobs:
   
   prepare:
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_APP: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
     
     steps:
       - name: Display DEPLOY_APP
@@ -24,9 +24,11 @@ jobs:
     needs: [ prepare ]
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: ${{ env.DEPLOY_APP == true }}
+      build-artifacts: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
     
   deploy:
+    env:
+      DEPLOY_APP: ${{ startsWith( github.ref_name, 'feature/' ) || github.ref_name == 'master' }}
     needs: [ build ]
     if: ${{ env.DEPLOY_APP == true }}
     runs-on: ubuntu-latest
