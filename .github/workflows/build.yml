@@ -1,6 +1,14 @@
 ﻿name: Build
 
 on:
+  push:
+    branches-ignore:
+      - master
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - .gitignore
+      - README.md
+  
   workflow_call:
     inputs:
       build-artifacts:
@@ -27,9 +35,6 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
 
-      - name: Display dotnet version
-        run: dotnet --version
-
       - name: Restore solution
         run: dotnet restore
 
@@ -38,15 +43,15 @@ jobs:
 
       - name: Test solution
         run: dotnet test --no-build --configuration Release
-          
+
       - name: Publish website
         if: ${{ inputs.build-artifacts == true }}
         run: |
-            dotnet publish --configuration Release --output ./publish
-            cd publish
-            zip -r ./publish.zip .
+          dotnet publish --configuration Release --output ./publish
+          cd publish
+          zip -r ./publish.zip .
         working-directory: ./src/MathHub.Api/
-        
+
       - name: Upload website artifact (website)
         if: ${{ inputs.build-artifacts == true }}
         uses: actions/upload-artifact@v3
