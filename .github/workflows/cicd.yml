@@ -1,0 +1,23 @@
+﻿name: CICD
+
+on:
+  push:
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - .gitignore
+      - README.md
+    
+jobs:
+  
+  prepare:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Display branch name
+        run:
+          echo ${{ github.ref_name }}
+  
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      build-artifacts: false
