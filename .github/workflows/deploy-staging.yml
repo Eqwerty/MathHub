@@ -1,4 +1,4 @@
-﻿name: Staging Deploy
+﻿name: deploy-staging
 
 on:
   workflow_dispatch:
@@ -7,6 +7,11 @@ env:
   AZURE_WEBAPP_NAME: mathhub-staging
 
 jobs:
+  
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      build-artifacts: true
   
   deploy:
     runs-on: ubuntu-latest
