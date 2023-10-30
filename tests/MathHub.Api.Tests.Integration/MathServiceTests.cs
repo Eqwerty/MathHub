@@ -5,7 +5,7 @@ using Xunit;
 
 namespace MathHub.Api.Tests.Integration;
 
-public class MathHubApiTests
+public class MathServiceTests
 {
     private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new WebApplicationFactory<IApiMarker>();
 
@@ -24,10 +24,10 @@ public class MathHubApiTests
 
         //Assert
         response.Should().HaveStatusCode(HttpStatusCode.OK);
-        
+
         var responseContent = await response.Content.ReadAsStringAsync();
         var actualResponse = bool.Parse(responseContent);
-        
+
         actualResponse.Should().Be(expectedResult);
     }
 }

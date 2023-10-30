@@ -1,6 +1,6 @@
 namespace MathHub.Api.Services;
 
-internal class MathService : IMathService
+internal sealed class MathService : IMathService
 {
     public bool IsEven(int number)
     {
