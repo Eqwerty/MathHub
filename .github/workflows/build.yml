@@ -6,9 +6,9 @@ on:
       - master
       - feature/*
     paths-ignore:
-      - '.github/CODEOWNERS'
+      - ".github/CODEOWNERS"
       - .gitignore
-      - README.md
+      - "**/*.md"
   
   workflow_call:
     inputs:
