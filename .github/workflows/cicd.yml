@@ -25,6 +25,10 @@ jobs:
     needs: [ build ]
     
     steps:
+      - name: Display variable
+        run:
+          echo ${{ var.AZURE_WEBAPP_NAME }}
+        
       - name: Display secret
         run:
           echo ${{ secrets.AZURE_PUBLISH_PROFILE }}
