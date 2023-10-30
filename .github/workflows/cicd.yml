@@ -6,35 +6,24 @@ on:
       - ".github/CODEOWNERS"
       - .gitignore
       - "**/*.md"
+        
+env:
+  IS_MASTER: ${{ github.ref_name == 'master' }}
 
-permissions:
-  id-token: write
-  contents: read
-    
 jobs:
 
   build:
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: true
+      build-artifacts: IS_MASTER
   
   deploy-development:
-    if: ${{ github.ref_name == 'master' }}
+    if: ${{ env.IS_MASTER }}
     uses: ./.github/workflows/deploy.yml
     needs: [ build ]
     secrets: inherit
     with:
       environmentName: Development
-      
-  deploy-feature:
-    if: ${{ startsWith( github.ref_name, 'feature/' ) }}
-    runs-on: ubuntu-latest
-    needs: [ build ]
-    
-    steps:
-      - name: Deploy feature
-        run:
-            echo deploy feature...
   
   deploy-staging:
     uses: ./.github/workflows/deploy.yml
