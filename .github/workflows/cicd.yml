@@ -2,9 +2,6 @@
 
 on:
   push:
-    branches:
-      - master
-      - feature/*
     paths-ignore:
       - ".github/CODEOWNERS"
       - .gitignore
@@ -14,9 +11,6 @@ permissions:
   id-token: write
   contents: read
     
-env:
-  IS_MASTER: ${{ github.ref_name == master }}
-    
 jobs:
 
   build:
@@ -25,7 +19,7 @@ jobs:
       build-artifacts: true
   
   deploy-development:
-    if: ${{ env.IS_MASTER == true }}
+    if: ${{ github.ref_name == 'master' }}
     uses: ./.github/workflows/deploy.yml
     needs: [ build ]
     secrets: inherit
@@ -33,7 +27,7 @@ jobs:
       environmentName: Development
       
   deploy-feature:
-    if: ${{ env.IS_MASTER == false }}
+    if: ${{ startsWith( github.ref_name, 'feature/' ) }}
     runs-on: ubuntu-latest
     needs: [ build ]
     
