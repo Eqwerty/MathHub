@@ -6,19 +6,16 @@ on:
       - ".github/CODEOWNERS"
       - .gitignore
       - "**/*.md"
-        
-env:
-  IS_MASTER: ${{ github.ref_name == 'master' }}
 
 jobs:
 
   build:
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: IS_MASTER
+      build-artifacts: ${{ github.ref_name == 'master' }}
   
   deploy-development:
-    if: ${{ env.IS_MASTER }}
+    if: ${{ github.ref_name == 'master' }}
     uses: ./.github/workflows/deploy.yml
     needs: [ build ]
     secrets: inherit
