@@ -33,3 +33,10 @@ jobs:
     secrets: inherit
     with:
       environmentName: Staging
+  
+  deploy-production:
+    uses: ./.github/workflows/deploy.yml
+    needs: [ deploy-staging ]
+    secrets: inherit
+    with:
+      environmentName: Production
