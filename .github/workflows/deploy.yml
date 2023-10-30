@@ -3,7 +3,10 @@
 on:
   workflow_call: 
     inputs: 
-      environmentName:
+      azureWebAppName:
+        type: string
+        required: true
+      publishProfile:
         type: string
         required: true
 
@@ -16,26 +19,18 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v3
-        
-      - name: Display variable
-        run:
-          echo ${{ vars.AZURE_WEBAPP_NAME }}
 
-      - name: Display input environment
+      - name: Display app name
         run:
-          echo ${{ inputs.environmentName }}
+          echo ${{ inputs.azureWebAppName }}
 
-      - name: Display environment secret
+      - name: Display publish profile
         run:
-          echo ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          
-      - name: Display repository secret
-        run:
-          echo ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
+          echo ${{ inputs.publishProfile }}
 
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          app-name: ${{ inputs.azureWebAppName }}
+          publish-profile: ${{ inputs.publishProfile }}
           package: website/publish.zip

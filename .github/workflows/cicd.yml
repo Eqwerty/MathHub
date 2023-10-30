@@ -24,4 +24,5 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     needs: [ build ]
     with:
-      environmentName: Development
+      azureWebAppName: ${{ vars.DEVELOPMENT_AZURE_WEBAPP_NAME }}
+      publishProfile: ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
