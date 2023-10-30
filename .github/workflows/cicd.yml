@@ -15,7 +15,7 @@ permissions:
   contents: read
     
 env:
-  IS_MASTER: ${{ github.ref_name == master }}
+  IS_MASTER: ${{ github.ref_name == "master" }}
     
 jobs:
 
