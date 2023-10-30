@@ -22,6 +22,7 @@ jobs:
   
   display:
     runs-on: ubuntu-latest
+    environment: Development
     needs: [ build ]
     
     steps:
