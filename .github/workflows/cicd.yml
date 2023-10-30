@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Display variable
         run:
-          echo ${{ var.AZURE_WEBAPP_NAME }}
+          echo ${{ vars.AZURE_WEBAPP_NAME }}
         
       - name: Display secret
         run:
