@@ -16,12 +16,12 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v3
-
-      - name: Display web app name
+        
+      - name: Display variable
         run:
           echo ${{ vars.AZURE_WEBAPP_NAME }}
 
-      - name: Display publish profile
+      - name: Display secret
         run:
           echo ${{ secrets.AZURE_PUBLISH_PROFILE }}
 
