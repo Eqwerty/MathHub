@@ -23,6 +23,14 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
 
+      - name: Display web app name
+        run:
+          echo ${{ vars.AZURE_WEBAPP_NAME }}
+
+      - name: Display publish profile
+        run:
+          echo ${{ secrets.AZURE_PUBLISH_PROFILE }}
+
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
