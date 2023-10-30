@@ -10,7 +10,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello, world!");
+app.MapGet("/", () => "Hello, world updated!");
+
 app.MapGet("/isEven/{number:int}", ([FromRoute] int number, [FromServices] IMathService mathService) => Results.Ok(mathService.IsEven(number)));
 
 app.UseSwagger();
