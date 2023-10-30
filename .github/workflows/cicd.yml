@@ -23,6 +23,6 @@ jobs:
   deploy:
     uses: ./.github/workflows/deploy.yml
     needs: [ build ]
+    secrets: inherit
     with:
-      azureWebAppName: ${{ vars.DEVELOPMENT_AZURE_WEBAPP_NAME }}
-      publishProfile: ${{ vars.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
+      environmentName: Development
