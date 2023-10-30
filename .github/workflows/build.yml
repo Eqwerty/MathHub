@@ -1,15 +1,6 @@
 ﻿name: Build
 
 on:
-  push:
-    branches-ignore:
-      - master
-      - feature/*
-    paths-ignore:
-      - ".github/CODEOWNERS"
-      - .gitignore
-      - "**/*.md"
-  
   workflow_call:
     inputs:
       build-artifacts:

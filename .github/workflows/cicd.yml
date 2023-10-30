@@ -7,16 +7,12 @@ on:
       - .gitignore
       - "**/*.md"
 
-permissions:
-  id-token: write
-  contents: read
-    
 jobs:
 
   build:
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: true
+      build-artifacts: ${{ github.ref_name == 'master' }}
   
   deploy-development:
     if: ${{ github.ref_name == 'master' }}
@@ -25,16 +21,6 @@ jobs:
     secrets: inherit
     with:
       environmentName: Development
-      
-  deploy-feature:
-    if: ${{ startsWith( github.ref_name, 'feature/' ) }}
-    runs-on: ubuntu-latest
-    needs: [ build ]
-    
-    steps:
-      - name: Deploy feature
-        run:
-            echo deploy feature...
   
   deploy-staging:
     uses: ./.github/workflows/deploy.yml
