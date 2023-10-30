@@ -21,9 +21,17 @@ jobs:
         run:
           echo ${{ vars.AZURE_WEBAPP_NAME }}
 
-      - name: Display secret
+      - name: Display input environment
+        run:
+          echo ${{ inputs.environmentName }}
+
+      - name: Display environment secret
         run:
           echo ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          
+      - name: Display repository secret
+        run:
+          echo ${{ secrets.DEVELOPMENT_AZURE_PUBLISH_PROFILE }}
 
       - name: Deploy
         uses: azure/webapps-deploy@v2
