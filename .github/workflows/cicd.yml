@@ -8,6 +8,10 @@ on:
       - ".github/CODEOWNERS"
       - .gitignore
       - "**/*.md"
+
+permissions:
+  id-token: write
+  contents: read
         
 jobs:
 
