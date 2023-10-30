@@ -1,18 +1,21 @@
+using MathHub.Api.Extensions;
+using MathHub.Api.Repositories;
 using MathHub.Api.Services;
-using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IMathService, MathService>();
+builder.Services.AddTransient<IGuidsService, GuidsService>();
+builder.Services.AddSingleton<IGuidsRepository, GuidsRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
 
-app.MapGet("/isEven/{number:int}", ([FromRoute] int number, [FromServices] IMathService mathService) => Results.Ok(mathService.IsEven(number)));
+app.UseEndpoints();
 
 app.UseSwagger();
 app.UseSwaggerUI();

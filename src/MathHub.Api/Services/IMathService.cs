@@ -1,6 +1,6 @@
 ﻿namespace MathHub.Api.Services;
 
-public interface IMathService
+internal interface IMathService
 {
     bool IsEven(int number);
 }
