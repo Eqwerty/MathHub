@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -29,7 +29,7 @@ public class GuidsServiceTests
 
         //Assert
         guidsInDb.Should().ContainSingle().Which.Should().Be(guidAdded);
-        deleteResponse.Should().HaveStatusCode(HttpStatusCode.NoContent);
+        deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
         var emptyResponse = await httpClient.GetAsync(baseUri);
         var emptyGuidsInDb = await emptyResponse.Content.ReadFromJsonAsync<IReadOnlyCollection<Guid>>();
