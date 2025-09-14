@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using MathHub.Api.Services;
 using Xunit;
 

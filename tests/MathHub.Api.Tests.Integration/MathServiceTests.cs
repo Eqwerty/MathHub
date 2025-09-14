@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -23,7 +23,7 @@ public class MathServiceTests
         var response = await httpClient.GetAsync(route);
 
         //Assert
-        response.Should().HaveStatusCode(HttpStatusCode.OK);
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
 
         var responseContent = await response.Content.ReadAsStringAsync();
         var actualResponse = bool.Parse(responseContent);
