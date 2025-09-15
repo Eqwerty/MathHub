@@ -8,7 +8,7 @@ namespace MathHub.Api.Tests.Integration;
 
 public class GuidsServiceTests
 {
-    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new WebApplicationFactory<IApiMarker>();
+    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new();
 
     [Fact]
     public async Task GuidsService_ReturnsCorrectResponses_WhenRequested()

@@ -7,7 +7,7 @@ namespace MathHub.Api.Tests.Unit;
 
 public class GuidsServiceTests
 {
-    private readonly GuidsService _guidsService = new GuidsService(new GuidsRepository());
+    private readonly GuidsService _guidsService = new(new GuidsRepository());
 
     [Fact]
     public async Task GetAsync_ReturnsEmptyCollection_WhenNoGuidsAdded()
