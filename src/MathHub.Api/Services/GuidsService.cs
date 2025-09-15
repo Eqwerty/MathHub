@@ -2,14 +2,9 @@
 
 namespace MathHub.Api.Services;
 
-internal sealed class GuidsService : IGuidsService
+internal sealed class GuidsService(IGuidsRepository guidsRepository) : IGuidsService
 {
-    private readonly IGuidsRepository _guidsRepository;
-
-    public GuidsService(IGuidsRepository guidsRepository)
-    {
-        _guidsRepository = guidsRepository;
-    }
+    private readonly IGuidsRepository _guidsRepository = guidsRepository;
 
     public Task<IReadOnlyCollection<Guid>> GetAsync() => _guidsRepository.GetAsync();
 

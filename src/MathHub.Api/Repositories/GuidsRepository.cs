@@ -2,12 +2,9 @@
 
 internal sealed class GuidsRepository : IGuidsRepository
 {
-    private readonly List<Guid> _guids = new List<Guid>();
+    private readonly List<Guid> _guids = [];
 
-    public Task<IReadOnlyCollection<Guid>> GetAsync()
-    {
-        return Task.FromResult((IReadOnlyCollection<Guid>)_guids);
-    }
+    public Task<IReadOnlyCollection<Guid>> GetAsync() => Task.FromResult<IReadOnlyCollection<Guid>>(_guids);
 
     public Task<Guid> AddAsync()
     {

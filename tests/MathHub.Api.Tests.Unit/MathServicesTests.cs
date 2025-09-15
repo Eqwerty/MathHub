@@ -6,7 +6,7 @@ namespace MathHub.Api.Tests.Unit;
 
 public class MathServicesTests
 {
-    private readonly MathService _mathService = new MathService();
+    private readonly MathService _mathService = new();
 
     [Fact]
     public void IsEven_ShouldReturnTrue_WhenZeroIsProvided()

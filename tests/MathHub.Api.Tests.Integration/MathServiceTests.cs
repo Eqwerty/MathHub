@@ -7,7 +7,7 @@ namespace MathHub.Api.Tests.Integration;
 
 public class MathServiceTests
 {
-    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new WebApplicationFactory<IApiMarker>();
+    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new();
 
     [Theory]
     [InlineData("/isEven/4", true)]
