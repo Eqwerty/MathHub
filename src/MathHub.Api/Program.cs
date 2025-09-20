@@ -17,9 +17,7 @@ builder.Services.AddTransient<IGuidsService, GuidsService>();
 builder.Services.AddSingleton<IGuidsRepository, GuidsRepository>();
 
 builder.Services.AddOptions<DatabaseOptions>()
-    .Bind(builder.Configuration.GetSection("database"))
-    .ValidateDataAnnotations()
-    .ValidateOnStart();
+    .Bind(builder.Configuration.GetSection("database"));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
