@@ -2,13 +2,25 @@
 using System.Net.Http.Json;
 using AwesomeAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace MathHub.Api.Tests.Integration;
 
 public class GuidsServiceTests
 {
-    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new();
+    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory =
+        new WebApplicationFactory<IApiMarker>()
+            .WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureAppConfiguration((_, config) =>
+                {
+                    config.AddInMemoryCollection(new Dictionary<string, string?>
+                    {
+                        ["Database:ConnectionString"] = "Server=localhost;Database=TestDb;User Id=user;Password=password;"
+                    });
+                });
+            });
 
     [Fact]
     public async Task GuidsService_ReturnsCorrectResponses_WhenRequested()

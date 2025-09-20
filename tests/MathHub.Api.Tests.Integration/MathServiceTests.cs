@@ -1,13 +1,25 @@
 ﻿using System.Net;
 using AwesomeAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace MathHub.Api.Tests.Integration;
 
 public class MathServiceTests
 {
-    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory = new();
+    private readonly WebApplicationFactory<IApiMarker> _webApplicationFactory =
+        new WebApplicationFactory<IApiMarker>()
+            .WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureAppConfiguration((_, config) =>
+                {
+                    config.AddInMemoryCollection(new Dictionary<string, string?>
+                    {
+                        ["Database:ConnectionString"] = "Server=localhost;Database=TestDb;User Id=user;Password=password;"
+                    });
+                });
+            });
 
     [Theory]
     [InlineData("/isEven/4", true)]
