@@ -21,7 +21,6 @@ jobs:
     secrets: inherit
     with:
       environmentName: Development
-      connectionString: "This is the connection string for Development"
   
   deploy-staging:
     uses: ./.github/workflows/deploy.yml
@@ -29,7 +28,6 @@ jobs:
     secrets: inherit
     with:
       environmentName: Staging
-      connectionString: "This is the connection string for Staging"
   
   deploy-production:
     uses: ./.github/workflows/deploy.yml
@@ -37,4 +35,3 @@ jobs:
     secrets: inherit
     with:
       environmentName: Production
-      connectionString: "This is the connection string for Production"
