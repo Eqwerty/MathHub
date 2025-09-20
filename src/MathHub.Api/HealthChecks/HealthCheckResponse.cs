@@ -2,9 +2,9 @@
 
 internal class HealthCheckResponse
 {
-    public string Status { get; init; }
+    public required string Status { get; init; }
 
-    public IEnumerable<HealthCheck> HealthChecks { get; init; }
+    public required IEnumerable<HealthCheck> HealthChecks { get; init; }
 
     public TimeSpan Duration { get; init; }
 }
