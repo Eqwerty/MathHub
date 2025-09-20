@@ -10,27 +10,27 @@ on:
 jobs:
 
   build:
-    uses: ./.github/workflows/build.yml
+    uses: Eqwerty/CICD-workflows/.github/workflows/build.yml@main
     with:
       build-artifacts: ${{ github.ref_name == 'master' }}
   
   deploy-development:
     if: ${{ github.ref_name == 'master' }}
-    uses: ./.github/workflows/deploy.yml
+    uses: Eqwerty/CICD-workflows/.github/workflows/deploy.yml@main
     needs: [ build ]
     secrets: inherit
     with:
       environmentName: Development
   
   deploy-staging:
-    uses: ./.github/workflows/deploy.yml
+    uses: Eqwerty/CICD-workflows/.github/workflows/deploy.yml@main
     needs: [ deploy-development ]
     secrets: inherit
     with:
       environmentName: Staging
   
   deploy-production:
-    uses: ./.github/workflows/deploy.yml
+    uses: Eqwerty/CICD-workflows/.github/workflows/deploy.yml@main
     needs: [ deploy-staging ]
     secrets: inherit
     with:
