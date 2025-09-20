@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    uses: ./.github/workflows/build.yml
+    uses: Eqwerty/CICD-workflows/.github/workflows/build.yml@main
     with:
       build-artifacts: ${{ github.ref_name == 'master' }}
   
