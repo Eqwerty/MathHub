@@ -8,6 +8,5 @@ internal static class WebApplicationExtensions
     {
         MathEndpoints.DefineEndpoints(app);
         GuidsEndpoints.DefineEndpoints(app);
-        ConfigurationEndpoints.DefineEndpoints(app);
     }
 }

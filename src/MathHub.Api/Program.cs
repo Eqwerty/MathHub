@@ -1,4 +1,5 @@
 using MathHub.Api.Extensions;
+using MathHub.Api.HealthChecks;
 using MathHub.Api.Options;
 using MathHub.Api.Repositories;
 using MathHub.Api.Services;
@@ -11,6 +12,9 @@ builder.Configuration
     .AddEnvironmentVariables("MATHHUB_")
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("database");
 
 builder.Services.AddTransient<IMathService, MathService>();
 builder.Services.AddTransient<IGuidsService, GuidsService>();
@@ -28,6 +32,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
 
+app.UseHealthChecks();
 app.UseEndpoints();
 
 app.UseSwagger();
