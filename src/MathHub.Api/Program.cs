@@ -6,11 +6,7 @@ using MathHub.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.Sources.Clear();
-
 builder.Configuration
-    .AddEnvironmentVariables("MATHHUB_")
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
 
 builder.Services.AddHealthChecks()
