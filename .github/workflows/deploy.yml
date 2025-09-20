@@ -6,17 +6,12 @@ on:
       environmentName:
         type: string
         required: true
-      connectionString:
-        type: string
-        required: true
 
 jobs:
   
   deploy:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environmentName }}
-    env:
-      ASPNETCORE_database__connectionString: ${{ inputs.connectionString }}
 
     steps:
       - name: Download artifacts
