@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environmentName }}
     env:
-      MATHHUB_database__connectionString: ${{ inputs.connectionString }}
+      ASPNETCORE_database__connectionString: ${{ inputs.connectionString }}
 
     steps:
       - name: Download artifacts
