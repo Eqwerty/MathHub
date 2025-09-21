@@ -1,4 +1,4 @@
-﻿name: CICD Feature
+﻿name: CI/CD Feature
 
 on:
   push:
