@@ -1,4 +1,4 @@
-﻿name: CICD Master
+﻿name: CI/CD Master
 
 on:
   push:
