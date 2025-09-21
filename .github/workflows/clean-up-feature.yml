@@ -1,4 +1,4 @@
-﻿name: Cleanup-Feature
+﻿name: Clean-up Feature
 
 on:
   delete:

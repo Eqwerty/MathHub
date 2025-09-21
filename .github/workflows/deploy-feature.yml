@@ -1,4 +1,4 @@
-﻿name: Deploy-Feature
+﻿name: Deploy Feature
 
 on:
   workflow_call:
