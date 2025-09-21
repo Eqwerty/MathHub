@@ -2,8 +2,7 @@
 
 on:
   push:
-    branches-ignore:
-      - "master"
+    branches:
       - "feature/**"
     paths-ignore:
       - ".github/CODEOWNERS"
@@ -18,4 +17,10 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: false
+      build-artifacts: true
+
+  deploy-feature:
+    if: ${{ startsWith(github.ref_name, 'feature/') }}
+    uses: ./.github/workflows/deploy-feature.yml
+    needs: [ build ]
+    secrets: inherit

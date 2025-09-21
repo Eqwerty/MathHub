@@ -2,10 +2,6 @@
 
 on:
   workflow_call:
-    inputs:
-      environmentName:
-        type: string
-        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -14,7 +10,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environmentName }}
+    environment: Feature
 
     steps:
       - name: Extract branch name
