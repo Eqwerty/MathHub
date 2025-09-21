@@ -12,6 +12,7 @@ permissions:
 jobs:
   clean-up:
     runs-on: ubuntu-latest
+    environment: Development
 
     steps:
       - name: Extract branch name
