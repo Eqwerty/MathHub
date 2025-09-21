@@ -1,0 +1,21 @@
+﻿name: Deploy-Feature
+
+on:
+  workflow_call:
+    inputs:
+      environmentName:
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environmentName }}
+
+    steps:
+      - name: Create Web APP
+        run: |
+          az webapp create \
+            --name ${{ github.ref_name }} \
+            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+            --plan ${{ vars.AZURE_SERVICE_PLAN }}

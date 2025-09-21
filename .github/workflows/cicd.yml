@@ -12,25 +12,33 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     with:
-      build-artifacts: ${{ github.ref_name == 'master' }}
-  
+      build-artifacts: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'feature/') }}
+
+  deploy-feature:
+    if: ${{ startsWith(github.ref_name, 'feature/') }}
+    uses: ./.github/workflows/deploy-feature.yml
+    needs: [ build ]
+    secrets: inherit
+    with:
+      environmentName: Feature
+
   deploy-development:
     if: ${{ github.ref_name == 'master' }}
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy-main.yml
     needs: [ build ]
     secrets: inherit
     with:
       environmentName: Development
-  
+
   deploy-staging:
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy-main.yml
     needs: [ deploy-development ]
     secrets: inherit
     with:
       environmentName: Staging
-  
+
   deploy-production:
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy-main.yml
     needs: [ deploy-staging ]
     secrets: inherit
     with:
