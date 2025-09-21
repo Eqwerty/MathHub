@@ -13,6 +13,12 @@ jobs:
     environment: ${{ inputs.environmentName }}
 
     steps:
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          BRANCH_NAME="${GITHUB_REF_NAME#feature/}"
+          echo "branch_name=ft-${BRANCH_NAME}" >> $GITHUB_OUTPUT
+
       - name: Azure login
         uses: azure/login@v2
         with:
@@ -20,9 +26,9 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Create Web APP
-        run: |
-          az webapp create \
-            --name ${{ github.ref_name }} \
-            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-            --plan ${{ vars.AZURE_SERVICE_PLAN }}
+#      - name: Create Web APP
+#        run: |
+#          az webapp create \
+#            --name ft-${{ github.ref_name##feature/ }} \
+#            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+#            --plan ${{ vars.AZURE_SERVICE_PLAN }}
