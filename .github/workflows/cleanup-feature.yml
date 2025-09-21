@@ -5,8 +5,12 @@ on:
     branches:
       - "feature/*"
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  cleanup:
+  clean-up:
     runs-on: ubuntu-latest
 
     steps:
