@@ -1,0 +1,41 @@
+﻿name: CICD
+
+on:
+  push:
+    branches:
+      - "master"
+    paths-ignore:
+      - ".github/CODEOWNERS"
+      - .gitignore
+      - "**/*.md"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      build-artifacts: true
+
+  deploy-development:
+    uses: ./.github/workflows/deploy-main.yml
+    needs: [ build ]
+    secrets: inherit
+    with:
+      environmentName: Development
+
+  deploy-staging:
+    uses: ./.github/workflows/deploy-main.yml
+    needs: [ deploy-development ]
+    secrets: inherit
+    with:
+      environmentName: Staging
+
+  deploy-production:
+    uses: ./.github/workflows/deploy-main.yml
+    needs: [ deploy-staging ]
+    secrets: inherit
+    with:
+      environmentName: Production
