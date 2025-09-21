@@ -12,7 +12,6 @@ permissions:
 jobs:
   clean-up:
     runs-on: ubuntu-latest
-    environment: Feature
 
     steps:
       - name: Extract branch name
