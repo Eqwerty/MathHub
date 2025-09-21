@@ -2,8 +2,6 @@
 
 on:
   delete:
-    branches:
-      - "feature/**"
 
 permissions:
   id-token: write
@@ -11,6 +9,7 @@ permissions:
 
 jobs:
   clean-up:
+    if: startsWith(github.event.ref_type, 'branch') && startsWith(github.event.ref, 'feature/')
     runs-on: ubuntu-latest
 
     steps:
