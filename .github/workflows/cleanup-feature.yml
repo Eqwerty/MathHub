@@ -3,7 +3,7 @@
 on:
   delete:
     branches:
-      - "feature/*"
+      - "feature/**"
 
 permissions:
   id-token: write
