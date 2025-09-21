@@ -17,7 +17,7 @@ jobs:
       - name: Extract branch name
         id: extract_branch
         run: |
-          BRANCH_NAME="${GITHUB_REF_NAME#feature/}"
+          BRANCH_NAME="${GITHUB_EVENT_REF#feature/}"
           echo "branch_name=mathhub-ft-${BRANCH_NAME}" >> $GITHUB_OUTPUT
 
       - name: Azure login
