@@ -1,0 +1,30 @@
+﻿name: Cleanup-Feature
+
+on:
+  delete:
+    branches:
+      - "feature/*"
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          BRANCH_NAME="${GITHUB_REF_NAME#feature/}"
+          echo "branch_name=mathhub-ft-${BRANCH_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Delete Web App
+        run: |
+          az webapp delete \
+            --name ${{ steps.extract_branch.outputs.branch_suffix }} \
+            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }}
